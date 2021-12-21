@@ -1,4 +1,5 @@
-# Binding-of-Isaac-Tutorial
+# Binding-of-Isaac-Clone
 
-Based on the project from Chillehh's YouTube series in Unity 2019:
-https://www.youtube.com/playlist?list=PLosGp2abdYXQF3ukYDoB3mzX0h0eKWXkQ
+A binding of clone to test some mechanics
+
+Based on the project from Chillehh's project
