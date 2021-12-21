@@ -46,9 +46,9 @@ public class EnemyController : MonoBehaviour
     {
         switch(currState)
         {
-            //case(EnemyState.Idle):
-            //    Idle();
-            //break;
+            case(EnemyState.Idle):
+                Idle();
+            break;
             case(EnemyState.Wander):
                 Wander();
             break;
@@ -81,6 +81,11 @@ public class EnemyController : MonoBehaviour
         {
             currState = EnemyState.Idle;
         }
+    }
+
+    private void Idle()
+    {
+        //TODO: 
     }
 
     private bool IsPlayerInRange(float range)

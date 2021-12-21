@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     private static float fireRate = 0.5f;
     private static float bulletSize = 0.5f;
 
-    private bool bootCollected = false;
+    private bool bootCollected = false;//TODO: move these
     private bool screwCollected = false;
 
     public List<string> collectedNames = new List<string>();
