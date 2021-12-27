@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-    Rigidbody2D rigidbody;
+    private Rigidbody2D rgBody;
     public Text collectedText;
     public static int collectedAmount = 0;
 
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rgBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
             lastFire = Time.time;
         }
 
-        rigidbody.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
+        rgBody.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
         collectedText.text = "Items Collected: " + collectedAmount;
     }
 

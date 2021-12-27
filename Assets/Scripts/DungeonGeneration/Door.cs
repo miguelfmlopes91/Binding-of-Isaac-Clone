@@ -10,15 +10,15 @@ public class Door : MonoBehaviour
     }
 
     public DoorType doorType;
-    
-    public GameObject doorCollider;
-
+    private BoxCollider2D doorCollider;
+    [SerializeField]private SpriteRenderer doorSpriteRenderer;
     private GameObject player;
     private float widthOffset = 4f;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        doorCollider = GetComponent<BoxCollider2D>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -41,5 +41,11 @@ public class Door : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void SetHideDoor(bool hide)
+    {
+        doorCollider.enabled = !hide;
+        doorSpriteRenderer.enabled = !hide;
     }
 }

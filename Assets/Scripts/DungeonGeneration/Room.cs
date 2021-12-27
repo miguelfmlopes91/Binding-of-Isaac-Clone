@@ -18,10 +18,10 @@ public class Room : MonoBehaviour
         Y = y;
     }
 
-    public Door leftDoor;
-    public Door rightDoor;
-    public Door topDoor;
-    public Door bottomDoor;
+    private Door leftDoor;
+    private Door rightDoor;
+    private Door topDoor;
+    private Door bottomDoor;
 
     public List<Door> doors = new List<Door>();
 

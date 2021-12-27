@@ -34,16 +34,7 @@ public class RoomController : MonoBehaviour
     {
         instance = this;
     }
-
-    void Start()
-    {
-        //LoadRoom("Start", 0, 0);
-        //LoadRoom("Empty", 1, 0);
-        //LoadRoom("Empty", -1, 0);
-        //LoadRoom("Empty", 0, 1);
-        //LoadRoom("Empty", 0, -1);
-    }
-
+    
     void Update()
     {
         UpdateRoomQueue();
@@ -97,7 +88,7 @@ public class RoomController : MonoBehaviour
 
     public void LoadRoom( string name, int x, int y)
     {
-        if(DoesRoomExist(x, y) == true)
+        if(DoesRoomExist(x, y))
         {
             return;
         }
@@ -205,14 +196,14 @@ public class RoomController : MonoBehaviour
 
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.doorCollider.SetActive(false);
+                        door.SetHideDoor(false);
                     }
                 }
                 else
                 {
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.doorCollider.SetActive(false);
+                        door.SetHideDoor(false);
                     }
                 }
             }
@@ -229,14 +220,14 @@ public class RoomController : MonoBehaviour
                     
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.doorCollider.SetActive(true);
+                        door.SetHideDoor(true);
                     }
                 }
                 else
                 {
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.doorCollider.SetActive(false);
+                        door.SetHideDoor(false);
                     }
                 }  
             }
