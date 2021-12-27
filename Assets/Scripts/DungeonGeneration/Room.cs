@@ -77,15 +77,15 @@ public class Room : MonoBehaviour
                 case Door.DoorType.right:
                     if(GetRight() == null)
                         door.gameObject.SetActive(false);
-                break;
+                    break;
                 case Door.DoorType.left:
                     if(GetLeft() == null)
                         door.gameObject.SetActive(false);
-                break;
+                    break;
                 case Door.DoorType.top:
                     if(GetTop() == null)
                         door.gameObject.SetActive(false);
-                break;
+                    break;
                 case Door.DoorType.bottom:
                 if(GetBottom() == null)
                         door.gameObject.SetActive(false);
@@ -141,7 +141,7 @@ public class Room : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
             RoomController.instance.OnPlayerEnterRoom(this);
         }
