@@ -157,9 +157,9 @@ public class RoomController : MonoBehaviour
 
     public string GetRandomRoomName()
     {
-        string[] possibleRooms = new string[] {
+        string[] possibleRooms = {
             "Empty",
-            "Basic1"
+            //"Basic1"
         };
 
         return possibleRooms[Random.Range(0, possibleRooms.Length)];
@@ -183,6 +183,7 @@ public class RoomController : MonoBehaviour
     {
         foreach(Room room in loadedRooms)
         {
+            //Not current rooms
             if(currRoom != room)
             {
                 EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
@@ -191,22 +192,14 @@ public class RoomController : MonoBehaviour
                     foreach(EnemyController enemy in enemies)
                     {
                         enemy.notInRoom = true;
-                        Debug.Log("Not in room");
-                    }
-
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.SetHideDoor(false);
                     }
                 }
-                else
+                foreach(Door door in room.GetComponentsInChildren<Door>())
                 {
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.SetHideDoor(false);
-                    }
+                    door.OpenDoor();
                 }
             }
+            //Current room
             else
             {
               EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
@@ -215,19 +208,18 @@ public class RoomController : MonoBehaviour
                     foreach(EnemyController enemy in enemies)
                     {
                         enemy.notInRoom = false;
-                        Debug.Log("In room");
                     }
                     
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.SetHideDoor(true);
+                        door.CloseDoor();
                     }
                 }
                 else
                 {
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.SetHideDoor(false);
+                        door.OpenDoor();
                     }
                 }  
             }
