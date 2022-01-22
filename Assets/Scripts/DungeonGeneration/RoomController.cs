@@ -113,7 +113,7 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    public void RegisterRoom( Room room)
+    public void RegisterRoom(Room room)
     {
         if(!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Y))
         {
@@ -130,9 +130,9 @@ public class RoomController : MonoBehaviour
 
             isLoadingRoom = false;
 
-            if(loadedRooms.Count == 0)
+            if (loadedRooms.Count == 0)
             {
-                CameraController.instance.currRoom = room;
+                SetCamerasRoom(room);
             }
 
             loadedRooms.Add(room);
@@ -167,9 +167,8 @@ public class RoomController : MonoBehaviour
 
     public void OnPlayerEnterRoom(Room room)
     {
-        CameraController.instance.currRoom = room;
+        SetCamerasRoom(room);
         currRoom = room;
-
         StartCoroutine(RoomCoroutine());
     }
 
@@ -223,6 +222,14 @@ public class RoomController : MonoBehaviour
                     }
                 }  
             }
+        }
+    }
+
+    void SetCamerasRoom(Room room)
+    {
+        foreach (Camera cam in Camera.allCameras)
+        {
+            cam.GetComponent<CameraController>().currRoom = room;
         }
     }
 }
