@@ -10,36 +10,25 @@ public class Door : MonoBehaviour
     }
 
     public DoorType doorType;
-    
-    public GameObject doorCollider;
-
-    private GameObject player;
-    private float widthOffset = 4f;
+    private BoxCollider2D doorCollider;
+    [SerializeField]private SpriteRenderer openDoorSpriteRenderer;
+    [SerializeField]private SpriteRenderer closedDoorSpriteRenderer;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        doorCollider = GetComponent<BoxCollider2D>();
+    }
+    
+    public void CloseDoor()
+    {
+        doorCollider.enabled = true;
+        closedDoorSpriteRenderer.enabled = true;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void OpenDoor()
     {
-        if(other.CompareTag("Player"))
-        {
-            switch(doorType)
-            {
-                case DoorType.bottom:
-                    player.transform.position = new Vector2(transform.position.x, transform.position.y - widthOffset);
-                    break;
-                case DoorType.left:
-                    player.transform.position = new Vector2(transform.position.x - widthOffset, transform.position.y);
-                    break;
-                case DoorType.right:
-                    player.transform.position = new Vector2(transform.position.x + widthOffset, transform.position.y);
-                    break;
-                case DoorType.top:
-                    player.transform.position = new Vector2(transform.position.x, transform.position.y + widthOffset);
-                    break;
-            }
-        }
+        doorCollider.enabled = false;
+        openDoorSpriteRenderer.enabled = true;
+        closedDoorSpriteRenderer.enabled = false;
     }
 }

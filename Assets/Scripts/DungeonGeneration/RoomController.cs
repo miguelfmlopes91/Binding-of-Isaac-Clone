@@ -34,16 +34,7 @@ public class RoomController : MonoBehaviour
     {
         instance = this;
     }
-
-    void Start()
-    {
-        //LoadRoom("Start", 0, 0);
-        //LoadRoom("Empty", 1, 0);
-        //LoadRoom("Empty", -1, 0);
-        //LoadRoom("Empty", 0, 1);
-        //LoadRoom("Empty", 0, -1);
-    }
-
+    
     void Update()
     {
         UpdateRoomQueue();
@@ -97,7 +88,7 @@ public class RoomController : MonoBehaviour
 
     public void LoadRoom( string name, int x, int y)
     {
-        if(DoesRoomExist(x, y) == true)
+        if(DoesRoomExist(x, y))
         {
             return;
         }
@@ -166,9 +157,9 @@ public class RoomController : MonoBehaviour
 
     public string GetRandomRoomName()
     {
-        string[] possibleRooms = new string[] {
+        string[] possibleRooms = {
             "Empty",
-            "Basic1"
+            //"Basic1"
         };
 
         return possibleRooms[Random.Range(0, possibleRooms.Length)];
@@ -192,6 +183,7 @@ public class RoomController : MonoBehaviour
     {
         foreach(Room room in loadedRooms)
         {
+            //Not current rooms
             if(currRoom != room)
             {
                 EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
@@ -200,22 +192,14 @@ public class RoomController : MonoBehaviour
                     foreach(EnemyController enemy in enemies)
                     {
                         enemy.notInRoom = true;
-                        Debug.Log("Not in room");
-                    }
-
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.doorCollider.SetActive(false);
                     }
                 }
-                else
+                foreach(Door door in room.GetComponentsInChildren<Door>())
                 {
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.doorCollider.SetActive(false);
-                    }
+                    door.OpenDoor();
                 }
             }
+            //Current room
             else
             {
               EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
@@ -224,19 +208,18 @@ public class RoomController : MonoBehaviour
                     foreach(EnemyController enemy in enemies)
                     {
                         enemy.notInRoom = false;
-                        Debug.Log("In room");
                     }
                     
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.doorCollider.SetActive(true);
+                        door.CloseDoor();
                     }
                 }
                 else
                 {
                     foreach(Door door in room.GetComponentsInChildren<Door>())
                     {
-                        door.doorCollider.SetActive(false);
+                        door.OpenDoor();
                     }
                 }  
             }
