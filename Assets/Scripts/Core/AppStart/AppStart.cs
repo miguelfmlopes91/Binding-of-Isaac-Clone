@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Core.Audio;
 using Core.Services;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -65,8 +66,8 @@ namespace Core.AppStart
         private  IEnumerator ConfigureServices(Services.Services services)
         {
         
-            /*services.AddService(typeof(ConfigurationService), new ConfigurationService());
-        yield return CreatePrefabService<AudioService, IAudioService>("AudioService", services);*/
+            services.AddService(typeof(IAudioService), new AudioService());
+            //yield return CreatePrefabService<AudioService, IAudioService>("AudioService", services);
             yield return null;
         }
     
