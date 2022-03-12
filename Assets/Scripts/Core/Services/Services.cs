@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Main
+namespace Core.Services
 {
     public class Services : IServiceProvider
     {

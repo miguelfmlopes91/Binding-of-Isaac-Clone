@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
+using Core.Services;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Main
+namespace Core.AppStart
 {
     public class AppStart : MonoBehaviour
     {
-        private readonly Services services = new Services();
+        private readonly Services.Services services = new Services.Services();
         private static bool s_initialized;
         private static AppStart s_instance;
     
@@ -61,7 +62,7 @@ namespace Main
         }
     
     
-        private  IEnumerator ConfigureServices(Services services)
+        private  IEnumerator ConfigureServices(Services.Services services)
         {
         
             /*services.AddService(typeof(ConfigurationService), new ConfigurationService());
@@ -115,7 +116,7 @@ namespace Main
             return services.GetService<T>();
         }
     
-        public IEnumerator CreatePrefabService<TImpl, TInterface>(string serviceName, Services services, Action<TImpl> callback = null) where TImpl : UnityEngine.Component
+        public IEnumerator CreatePrefabService<TImpl, TInterface>(string serviceName, Services.Services services, Action<TImpl> callback = null) where TImpl : UnityEngine.Component
         {
             var handle = Addressables.LoadAssetAsync<GameObject>(ServicesPath + serviceName + ".prefab");
             yield return handle;

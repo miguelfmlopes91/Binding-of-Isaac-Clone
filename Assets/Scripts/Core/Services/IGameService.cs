@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace Main
+namespace Core.Services
 {
     public interface IGameService
     {

@@ -1,18 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Core.AppStart;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthUIController : MonoBehaviour
+namespace UI
 {
-    public GameObject heartContainer;
-    private float fillValue;
-
-    // Update is called once per frame
-    void Update()
+    public class HealthUIController : MonoBehaviour
     {
-        fillValue = (float)GameController.Health;
-        fillValue = fillValue / GameController.MaxHealth;
-        heartContainer.GetComponent<Image>().fillAmount = fillValue;
+        public GameObject heartContainer;
+        private float fillValue;
+
+        // Update is called once per frame
+        void Update()
+        {
+            fillValue = (float)GameController.Health;
+            fillValue = fillValue / GameController.MaxHealth;
+            heartContainer.GetComponent<Image>().fillAmount = fillValue;
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DungeonGeneration;
+using ScriptableObjects.Spawners;
 using UnityEngine;
 
 public class ObjectRoomSpawner : MonoBehaviour

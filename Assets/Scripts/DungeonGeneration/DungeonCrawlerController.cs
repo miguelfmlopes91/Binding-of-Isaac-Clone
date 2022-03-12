@@ -2,45 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direction
+namespace DungeonGeneration
 {
-    up = 0,
-    left = 1,
-    down = 2,
-    right = 3
-};
-
-public class DungeonCrawlerController : MonoBehaviour
-{
-    public static List<Vector2Int> positionsVisited = new List<Vector2Int>();
-    private static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
+    public enum Direction
     {
-        {Direction.up, Vector2Int.up},
-        {Direction.left, Vector2Int.left},
-        {Direction.down, Vector2Int.down},
-        {Direction.right, Vector2Int.right}
+        up = 0,
+        left = 1,
+        down = 2,
+        right = 3
     };
 
-    public static List<Vector2Int> GenerateDungeon(DungeonGenerationData dungeonData)
+    public class DungeonCrawlerController : MonoBehaviour
     {
-        List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
-
-        for(int i = 0; i < dungeonData.numberOfCrawlers; i++)
+        public static List<Vector2Int> positionsVisited = new List<Vector2Int>();
+        private static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
         {
-            dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
-        }
+            {Direction.up, Vector2Int.up},
+            {Direction.left, Vector2Int.left},
+            {Direction.down, Vector2Int.down},
+            {Direction.right, Vector2Int.right}
+        };
 
-        int iterations = Random.Range(dungeonData.iterationMin, dungeonData.iterationMax);
-
-        for(int i = 0; i < iterations; i++)
+        public static List<Vector2Int> GenerateDungeon(DungeonGenerationData dungeonData)
         {
-            foreach(DungeonCrawler dungeonCrawler in dungeonCrawlers)
+            List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
+
+            for(int i = 0; i < dungeonData.numberOfCrawlers; i++)
             {
-                Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
-                positionsVisited.Add(newPos);
+                dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
             }
-        }
 
-        return positionsVisited;
+            int iterations = Random.Range(dungeonData.iterationMin, dungeonData.iterationMax);
+
+            for(int i = 0; i < iterations; i++)
+            {
+                foreach(DungeonCrawler dungeonCrawler in dungeonCrawlers)
+                {
+                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+                    positionsVisited.Add(newPos);
+                }
+            }
+
+            return positionsVisited;
+        }
     }
 }
