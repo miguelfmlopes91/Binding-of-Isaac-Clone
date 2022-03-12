@@ -1,34 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Door : MonoBehaviour
+namespace DungeonGeneration
 {
-    public enum DoorType
+    public class Door : MonoBehaviour
     {
-        left, right, top, bottom
-    }
+        public enum DoorType
+        {
+            left, right, top, bottom
+        }
 
-    public DoorType doorType;
-    private BoxCollider2D doorCollider;
-    [SerializeField]private SpriteRenderer openDoorSpriteRenderer;
-    [SerializeField]private SpriteRenderer closedDoorSpriteRenderer;
+        public DoorType doorType;
+        private BoxCollider2D doorCollider;
+        [SerializeField]private SpriteRenderer openDoorSpriteRenderer;
+        [SerializeField]private SpriteRenderer closedDoorSpriteRenderer;
 
-    private void Start()
-    {
-        doorCollider = GetComponent<BoxCollider2D>();
-    }
+        private void Start()
+        {
+            doorCollider = GetComponent<BoxCollider2D>();
+        }
     
-    public void CloseDoor()
-    {
-        doorCollider.enabled = true;
-        closedDoorSpriteRenderer.enabled = true;
-    }
+        public void CloseDoor()
+        {
+            doorCollider.enabled = true;
+            closedDoorSpriteRenderer.enabled = true;
+        }
 
-    public void OpenDoor()
-    {
-        doorCollider.enabled = false;
-        openDoorSpriteRenderer.enabled = true;
-        closedDoorSpriteRenderer.enabled = false;
+        public void OpenDoor()
+        {
+            doorCollider.enabled = false;
+            openDoorSpriteRenderer.enabled = true;
+            closedDoorSpriteRenderer.enabled = false;
+        }
     }
 }
